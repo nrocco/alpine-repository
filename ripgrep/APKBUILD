@@ -23,7 +23,7 @@ package() {
     cd "${builddir}/${pkgname}-${pkgver}-${arch}-unknown-linux-musl"
 
     install -D -m755 rg "$pkgdir"/usr/bin/rg
-    install -D -m644 complete/_rg $"pkgdir"/usr/share/zsh/site-functions/_rg
+    install -D -m644 complete/_rg "$pkgdir"/usr/share/zsh/site-functions/_rg
 }
 
 sha512sums="368fb340aaadfa7672214708589360a3aca434bd75db7d08f625a996220d261f61b08d4663dc33231d4a68d00ebb9fcc28b4e973e867c25f398768b01f8e701c  ripgrep-0.8.1-x86_64-unknown-linux-musl.tar.gz"
