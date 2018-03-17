@@ -1,0 +1,31 @@
+# Contributor: Nico Di Rocco <dirocco.nico@gmail.com>
+# Maintainer: Nico Di Rocco <dirocco.nico@gmail.com>
+pkgname=ctagsio
+pkgver=0.0.0_git
+pkgrel=1
+pkgdesc="A maintained ctags implementation"
+url="https://ctags.io/"
+arch="x86_64"
+license="GPL-2.0"
+depends=""
+makedepends="automake autoconf build-base git ca-certificates openssl"
+install=""
+subpackages=""
+options="!check"
+source="${pkgname}-${pkgver}.tar.gz::https://github.com/universal-ctags/ctags/archive/ab5b42e4425e1cb53d8ba7abe87ae49563046696.tar.gz"
+builddir="$srcdir/ctags-ab5b42e4425e1cb53d8ba7abe87ae49563046696"
+
+build() {
+    cd "$builddir"
+    ./autogen.sh
+    ./configure --prefix=/usr
+    make
+}
+
+package() {
+    cd "$builddir"
+    make DESTDIR="$pkgdir" install
+    find "$pkgdir"
+}
+
+sha512sums="0c699985c5626e4d12f05b450be1caf3759ecd375465d2ae458e972af4472c865b462c42152604fc448826f3f1bf8c3e0e64b1da089c2a10935ae84529a77f30  ctagsio-0.0.0_git.tar.gz"

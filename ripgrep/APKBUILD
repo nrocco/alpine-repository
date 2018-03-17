@@ -2,7 +2,7 @@
 # Maintainer: Nico Di Rocco <dirocco.nico@gmail.com>
 pkgname=ripgrep
 pkgver=0.8.1
-pkgrel=0
+pkgrel=1
 pkgdesc="ripgrep recursively searches directories for a regex pattern"
 url="https://github.com/BurntSushi/ripgrep"
 arch="x86_64"

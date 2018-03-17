@@ -1,0 +1,29 @@
+# Contributor: Nico Di Rocco <dirocco.nico@gmail.com>
+# Maintainer: Nico Di Rocco <dirocco.nico@gmail.com>
+pkgname=ide
+pkgver=0.9.10
+pkgrel=0
+pkgdesc="ide provides a powerful ide that gets out of your way"
+url="https://github.com/nrocco/ide"
+arch="x86_64"
+license="Apache-2.0"
+depends=""
+makedepends=""
+install=""
+subpackages=""
+options="!check"
+source="https://github.com/nrocco/${pkgname}/releases/download/${pkgver}/${pkgname}-${pkgver}-linux-amd64.tar.gz"
+builddir="$srcdir/${pkgname}-${pkgver}"
+
+build() {
+    return 0
+}
+
+package() {
+    cd "$builddir"
+    install -D -m755 ide "$pkgdir"/usr/bin/ide
+    install -D -m755 rgit "$pkgdir"/usr/bin/rgit
+    install -D -m644 completion.zsh "$pkgdir"/usr/share/zsh/site-functions/_ide
+}
+
+sha512sums="cced44c55a2df900bb9073d745ebc233077879c849354637243cf4d27bcd2b23b5360c336a6ace3310d83253594af86ba1c7d594703af016d52e1fcfb4c9401a  ide-0.9.10-linux-amd64.tar.gz"
