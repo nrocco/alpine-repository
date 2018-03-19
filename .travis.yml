@@ -1,0 +1,13 @@
+---
+dist: trusty
+sudo: required
+git:
+  depth: 1
+install:
+- sudo apt-get install s3cmd
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+script:
+- make builder all push
