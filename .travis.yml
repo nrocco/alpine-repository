@@ -12,5 +12,6 @@ notifications:
     on_success: never
     on_failure: always
 script:
+- chmod -R 777 *
 - find * -ls
 - make builder all push
