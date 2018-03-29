@@ -10,27 +10,31 @@ shell:
 	$(DOCKER) --workdir "$(PWD)" builder ash -l
 
 .PHONY: all
-all: ripgrep ide ctagsio
+all: ripgrep ide fd ctagsio
 
 .PHONY: ripgrep
 ripgrep:
-	$(DOCKER) --workdir "$(PWD)/ripgrep" builder abuild -r
-	$(DOCKER) --workdir "$(PWD)/ripgrep" builder abuild cleanoldpkg
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild checksum
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
 
 .PHONY: ide
 ide:
-	$(DOCKER) --workdir "$(PWD)/ide" builder abuild -r
-	$(DOCKER) --workdir "$(PWD)/ide" builder abuild cleanoldpkg
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild checksum
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
 
 .PHONY: fd
 fd:
-	$(DOCKER) --workdir "$(PWD)/fd" builder abuild -r
-	$(DOCKER) --workdir "$(PWD)/fd" builder abuild cleanoldpkg
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild checksum
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
 
 .PHONY: ctagsio
 ctagsio:
-	$(DOCKER) --workdir "$(PWD)/ctagsio" builder abuild -r
-	$(DOCKER) --workdir "$(PWD)/ctagsio" builder abuild cleanoldpkg
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild checksum
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
 
 .PHONY: push
 push:

@@ -1,7 +1,7 @@
 # Contributor: Nico Di Rocco <dirocco.nico@gmail.com>
 # Maintainer: Nico Di Rocco <dirocco.nico@gmail.com>
 pkgname=fd
-pkgver=6.3.0
+pkgver=7.0.0
 pkgrel=0
 pkgdesc="A simple, fast and user-friendly alternative to 'find'."
 url="https://github.com/sharkdp/fd"
@@ -24,5 +24,4 @@ package() {
     install -D -m755 fd "$pkgdir"/usr/bin/fd
     install -D -m644 autocomplete/_fd "$pkgdir"/usr/share/zsh/site-functions/_fd
 }
-
-sha512sums="f105bac6406f52d9d4eea31a9ef5b5bad9970ba2ce30ee0f3461974966345ce7ecb66cbc830b90165017b636622fbda2dfd8b626754511cb9eca9821e53976db  fd-v6.3.0-x86_64-unknown-linux-musl.tar.gz"
+sha512sums="939577c1fe904a88e3c3c25fc3dba417401809c698a66f9b50c143c5f4eb67051e0ca77eab9e13ea88ac9e967d1a5389b6583f4bb414bda6edbfb615676733d8  fd-v7.0.0-x86_64-unknown-linux-musl.tar.gz"
