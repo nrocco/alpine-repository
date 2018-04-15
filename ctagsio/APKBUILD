@@ -2,7 +2,7 @@
 # Maintainer: Nico Di Rocco <dirocco.nico@gmail.com>
 pkgname=ctagsio
 pkgver=0.0.0_git
-commit=41fa40d1ed6d0a0cdf388ecf57b780c08445d27a
+commit=207f4c3dd74faec18feca79e62d1b72cc755858b
 pkgrel=1
 pkgdesc="A maintained ctags implementation"
 url="https://ctags.io/"
@@ -28,4 +28,4 @@ package() {
     make DESTDIR="$pkgdir" install
     find "$pkgdir"
 }
-sha512sums="1b9e24e3ab22b4d93ec31aa7720c997c6c1b4e8490b6a6e718d1ced0d61a6ecd79a02ed8f1cd48c31584836ca293f4666c39bbac9ebdcd6f368a3cd5872d1ec5  ctagsio-41fa40d1ed6d0a0cdf388ecf57b780c08445d27a.tar.gz"
+sha512sums="edb5c38fbff7c6f5c8017a6805ce9f154ce8ea3da169d85543212171528d0f5c859419c6a14acda7edaab540fcda8ccaf0570c19e0321f63500e65cd37a94fa0  ctagsio-207f4c3dd74faec18feca79e62d1b72cc755858b.tar.gz"
