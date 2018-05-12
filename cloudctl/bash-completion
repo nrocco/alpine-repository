@@ -1,0 +1,16 @@
+_cloudctl()
+{
+	local cur=${COMP_WORDS[COMP_CWORD]}
+	local prev=${COMP_WORDS[COMP_CWORD-1]}
+
+
+	case "$prev" in
+		start|show|ssh|reset|reboot|restart|stop|monitor)
+			COMPREPLY=( $(compgen -W "$(cloudctl list | xargs)" -- $cur) )
+		;;
+		cloudctl)
+			COMPREPLY=( $(compgen -W "list start show ssh reset stop monitor" -- $cur) )
+		;;
+	esac
+}
+complete -F _cloudctl cloudctl

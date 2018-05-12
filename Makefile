@@ -14,7 +14,7 @@ shell:
 	$(DOCKER) --workdir "$(PWD)" builder ash -l
 
 .PHONY: all
-all: ripgrep ide fd ctagsio
+all: ripgrep ide fd ctagsio cloudctl
 
 .PHONY: ripgrep
 ripgrep:
@@ -36,6 +36,12 @@ fd:
 
 .PHONY: ctagsio
 ctagsio:
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild checksum
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
+	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
+
+.PHONY: cloudctl
+cloudctl:
 	$(DOCKER) --workdir "$(PWD)/$@" builder abuild checksum
 	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
 	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
