@@ -5,6 +5,10 @@ DOCKER := docker run --rm -it \
 	--env "PACKAGER_PRIVKEY=$(PWD)/key.rsa" \
 	--env "REPODEST=$(PWD)/repo"
 
+.PHONY: versions
+versions:
+	grep -E '^pkgver=|url=' */APKBUILD
+
 .PHONY: shell
 shell:
 	$(DOCKER) --workdir "$(PWD)" builder ash -l
