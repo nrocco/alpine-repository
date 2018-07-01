@@ -2,15 +2,8 @@
 set -e
 
 LC_ALL=C
-
-if [[ "yes" == "${VIRTIO}" ]]
-then
-    CLOUD_NIC_DRIVER=virtio-net-pci
-    CLOUD_DISK_DRIVER=virtio
-else
-    CLOUD_NIC_DRIVER=e1000
-    CLOUD_DISK_DRIVER=ide
-fi
+CLOUD_NIC_DRIVER=${CLOUD_NIC_DRIVER:-virtio-net-pci}
+CLOUD_DISK_DRIVER=${CLOUD_DISK_DRIVER:-virtio}
 
 function usage() {
     echo "usage: $(basename $0) list" >&2
@@ -37,20 +30,20 @@ case "$1" in
             -enable-kvm \
             -name "${NAME}" \
             -m "size=4G" \
+            -cpu host \
+            -smp cpus=4 \
             -boot "order=nc" \
-            -drive "file=/srv/cloud/images/testdisk01,format=raw,if=${CLOUD_DISK_DRIVER}" \
-            -drive "file=/srv/cloud/images/testdisk02,format=raw,if=${CLOUD_DISK_DRIVER}" \
             -nic "tap,model=${CLOUD_NIC_DRIVER},mac=${MAC},ifname=${TAP_DEVICE},script=/usr/share/cloudctl/cloud-ifup,downscript=/usr/share/cloudctl/cloud-ifdown" \
             -smbios "type=1,serial=${SERIAL}" \
             -monitor "unix:${MONITOR_SOCKET},server,nowait" \
             -vnc ":0,password" \
             -daemonize
         echo "set_password vnc ${NAME}" | nc -N -U "${MONITOR_SOCKET}"
-        echo "vnc://playground.casadirocco.nl:5900 with ${NAME}"
+        echo "vnc://$(hostname -f):5900 with ${NAME}"
         ;;
 
     list)
-        find /var/run/ -name '*.socket' | sed -e 's#/var/run/##' -e 's#\.socket$##'
+        ls /var/run/*.socket 2> /dev/null | sed -e 's#/var/run/##' -e 's#\.socket$##'
         ;;
 
     show)
@@ -72,7 +65,7 @@ case "$1" in
     ssh)
         test -z "$2" && usage && exit 1
         parse_name "$2"
-        ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $(get_ip)
+        exec ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $(get_ip)
         ;;
 
     reset)
