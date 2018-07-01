@@ -1,7 +1,7 @@
 # Contributor: Nico Di Rocco <dirocco.nico@gmail.com>
 # Maintainer: Nico Di Rocco <dirocco.nico@gmail.com>
 pkgname=cloudctl
-pkgver=0.0.3
+pkgver=0.0.4
 pkgrel=0
 pkgdesc="a tiny wrapper around qemu to launch virtual machines"
 url="https://nrocco.github.io"
