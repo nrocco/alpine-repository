@@ -48,7 +48,7 @@ cloudctl:
 
 .PHONY: push
 push:
-	s3cmd sync --delete-removed --acl-public repo/alpine-repository/ s3://apk/edge/alpine-repository/
+	mc mirror --overwrite --remove repo/alpine-repository/ leaseweb/apk/edge/alpine-repository/
 	s3cmd setacl --acl-public --recursive s3://apk
 
 .PHONY: clean
