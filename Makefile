@@ -14,7 +14,7 @@ shell:
 	$(DOCKER) --workdir "$(PWD)" builder ash -l
 
 .PHONY: all
-all: ripgrep ide fd ctagsio cloudctl
+all: ripgrep ide fd ctagsio
 
 .PHONY: ripgrep
 ripgrep:
@@ -40,16 +40,10 @@ ctagsio:
 	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
 	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
 
-.PHONY: cloudctl
-cloudctl:
-	$(DOCKER) --workdir "$(PWD)/$@" builder abuild checksum
-	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
-	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
-
 .PHONY: push
 push:
 	mc mirror --overwrite --remove repo/alpine-repository/ leaseweb/apk/edge/alpine-repository/
-	s3cmd setacl --acl-public --recursive s3://apk
+	env/bin/s3cmd --config fuu.cfg setacl --acl-public --recursive s3://apk
 
 .PHONY: clean
 clean:
