@@ -14,22 +14,10 @@ shell:
 	$(DOCKER) --workdir "$(PWD)" builder ash -l
 
 .PHONY: all
-all: ripgrep ide fd ctagsio
-
-.PHONY: ripgrep
-ripgrep:
-	$(DOCKER) --workdir "$(PWD)/$@" builder abuild checksum
-	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
-	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
+all: ide ctagsio
 
 .PHONY: ide
 ide:
-	$(DOCKER) --workdir "$(PWD)/$@" builder abuild checksum
-	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
-	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
-
-.PHONY: fd
-fd:
 	$(DOCKER) --workdir "$(PWD)/$@" builder abuild checksum
 	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
 	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
