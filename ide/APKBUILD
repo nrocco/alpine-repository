@@ -1,7 +1,7 @@
 # Contributor: Nico Di Rocco <dirocco.nico@gmail.com>
 # Maintainer: Nico Di Rocco <dirocco.nico@gmail.com>
 pkgname=ide
-pkgver=0.9.13
+pkgver=0.9.15
 pkgrel=0
 pkgdesc="ide provides a powerful ide that gets out of your way"
 url="https://github.com/nrocco/ide"
@@ -12,7 +12,7 @@ makedepends=""
 install=""
 subpackages=""
 options="!check"
-source="https://github.com/nrocco/${pkgname}/releases/download/v${pkgver}/${pkgname}-linux-amd64 https://github.com/nrocco/${pkgname}/releases/download/v${pkgver}/completion.zsh https://github.com/nrocco/${pkgname}/releases/download/v${pkgver}/linter https://github.com/nrocco/${pkgname}/releases/download/v${pkgver}/rgit"
+source="https://github.com/nrocco/${pkgname}/releases/download/v${pkgver}/${pkgname}-linux-amd64 https://github.com/nrocco/${pkgname}/releases/download/v${pkgver}/completion.zsh https://github.com/nrocco/${pkgname}/releases/download/v${pkgver}/linter https://github.com/nrocco/${pkgname}/releases/download/v${pkgver}/rgit https://github.com/nrocco/${pkgname}/releases/download/v${pkgver}/compare"
 builddir="$srcdir"
 
 build() {
@@ -23,11 +23,13 @@ package() {
     cd "$builddir"
     install -D -m755 ide-linux-amd64 "$pkgdir"/usr/bin/ide
     install -D -m755 rgit "$pkgdir"/usr/bin/rgit
+    install -D -m755 compare "$pkgdir"/usr/bin/compare
     install -D -m755 linter "$pkgdir"/usr/bin/linter
     install -D -m644 completion.zsh "$pkgdir"/usr/share/zsh/site-functions/_ide
 }
 
-sha512sums="18ff3ab23945962756553e565cb474a7d35f614c2f7c5d3d6e1ee7680081b72a0d0fd3c6212e3a290a706f0072efd1c5222f97f45cb8bca8fd923714c07723d4  ide-linux-amd64
+sha512sums="2838e060d2bad428c420bc56b45e93ea21e3a8054db080c69bb004061fba01dc008c9d3891fa02b099f62fd1db944c49c991a355415eee4af028d92638cd0650  ide-linux-amd64
 20b281412405ed7c5620059c14da97ca85eef901a795695c6fc124b24cd55d839d8c2aa97bccd31df17b9218dda460e08dbc1caca522a2684d324b61b6659a07  completion.zsh
 4ba717b0ddbdb74e33d59ec751702e0a0bca958cdd9501f7f2f82ebfdd0b5f32512c963128e36ce81aad5834a192bc21a99abf8a330dffa83b7e9ce08f3f9490  linter
-60068ceb0197a14396fe0b085e9cae614021929c088900c58d84413ec9054998c2a6deac5b853370fbc484da4a70641aa79c8f7625572760ba9e6816452a245f  rgit"
+9ed608195df13fc8cc5ff04f95695c0b4c0d947b4714a78ec6ae31c8840c416e4c1a81a2bf228e65a055bd39b54890d2be6941942c14a2a235258d9dcdd5f2f3  rgit
+f4320d6c943688d853c185964bda117cfa496f211d900e183c37d6c1bf9b2d7f5742672079e4fe5d83e495ef39732d48eeda781214483d507876bafaf771ebfd  compare"
