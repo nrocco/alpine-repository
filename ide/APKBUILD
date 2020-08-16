@@ -1,7 +1,7 @@
 # Contributor: Nico Di Rocco <dirocco.nico@gmail.com>
 # Maintainer: Nico Di Rocco <dirocco.nico@gmail.com>
 pkgname=ide
-pkgver=0.9.16
+pkgver=0.10.0
 pkgrel=0
 pkgdesc="provides a powerful ide that gets out of your way"
 url="https://github.com/nrocco/ide"
@@ -22,11 +22,12 @@ build() {
 package() {
     cd "${builddir}"
 
+    install -D -m755 bin/codereview "${pkgdir}/usr/bin/codereview"
+    install -D -m755 bin/compare "${pkgdir}/usr/bin/compare"
     install -D -m755 bin/ide "${pkgdir}/usr/bin/ide"
     install -D -m755 bin/linter "${pkgdir}/usr/bin/linter"
     install -D -m755 bin/rgit "${pkgdir}/usr/bin/rgit"
-    install -D -m755 bin/compare "${pkgdir}/usr/bin/compare"
     install -D -m644 completion.zsh "${pkgdir}"/usr/share/zsh/site-functions/_ide
 }
 
-sha512sums="bd47a60d4cb9cce0c522602d890c67a1519df65c5aa22093401f0bb428d43c8758dba10482bc8b433f2281886d3207a8a733de314ce3d329bb23f32c8e4c1f62  ide-v0.9.16-linux-amd64.tar.gz"
+sha512sums="34a05ee230bda60a6422a82e370e1b685a0b1873ce0a14e446dd066ef1b048f7bd0b9141d4411f40d255c41bbef3744f82683eef4113168abffe13f7921a3744  ide-v0.10.0-linux-amd64.tar.gz"
