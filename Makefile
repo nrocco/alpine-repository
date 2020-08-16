@@ -1,4 +1,5 @@
 DOCKER := docker run --rm -it \
+	--dns 1.1.1.1 \
 	--mount "source=apk_cache,target=/var/cache/distfiles" \
 	--mount "type=bind,source=$(PWD),target=$(PWD)" \
 	--mount "type=bind,source=$(PWD)/key.rsa.pub,target=/etc/apk/keys/key.rsa.pub" \
@@ -14,16 +15,10 @@ shell:
 	$(DOCKER) --workdir "$(PWD)" builder ash -l
 
 .PHONY: all
-all: ide ctagsio
+all: ide
 
 .PHONY: ide
 ide:
-	$(DOCKER) --workdir "$(PWD)/$@" builder abuild checksum
-	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
-	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
-
-.PHONY: ctagsio
-ctagsio:
 	$(DOCKER) --workdir "$(PWD)/$@" builder abuild checksum
 	$(DOCKER) --workdir "$(PWD)/$@" builder abuild -r
 	$(DOCKER) --workdir "$(PWD)/$@" builder abuild cleanoldpkg
