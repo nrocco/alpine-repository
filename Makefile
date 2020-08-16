@@ -25,8 +25,7 @@ ide:
 
 .PHONY: push
 push:
-	mc mirror --overwrite --remove repo/alpine-repository/ leaseweb/apk/edge/alpine-repository/
-	env/bin/s3cmd --config fuu.cfg setacl --acl-public --recursive s3://apk
+	s3cmd --config fuu.cfg sync --acl-public --recursive --delete-removed --delete-after repo/alpine-repository/ s3://apk/edge/alpine-repository/
 
 .PHONY: clean
 clean:

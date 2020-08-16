@@ -30,4 +30,4 @@ package() {
     install -D -m644 completion.zsh "${pkgdir}"/usr/share/zsh/site-functions/_ide
 }
 
-sha512sums="34a05ee230bda60a6422a82e370e1b685a0b1873ce0a14e446dd066ef1b048f7bd0b9141d4411f40d255c41bbef3744f82683eef4113168abffe13f7921a3744  ide-v0.10.0-linux-amd64.tar.gz"
+sha512sums="bc3fb4f50423e3da6494904c8a7de77c7eb72fd23dc3a3aed2a61bb331339f8b5c5d532262c08e54a1c31ca2ee265b9ad0893e69bf9c78b290022e28f3a4b2f9  ide-v0.10.0-linux-amd64.tar.gz"
